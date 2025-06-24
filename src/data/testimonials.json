@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Rahul Mehta",
+    "role": "Patient",
+    "content": "Excellent care and professional staff. The doctors took their time to explain everything clearly. Highly recommended!",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Sunita Rao",
+    "role": "Patient's Family",
+    "content": "The hospital has state-of-the-art facilities and the nursing staff is very caring. Thank you for your excellent service.",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "name": "Vikram Singh",
+    "role": "Patient",
+    "content": "Had a great experience with my knee replacement surgery. The entire process was smooth and the results are fantastic.",
+    "rating": 5
+  },
+  {
+    "id": 4,
+    "name": "Anjali Gupta",
+    "role": "Patient",
+    "content": "The pediatric department is amazing. Dr. Reddy is wonderful with kids and very knowledgeable.",
+    "rating": 5
+  }
+]

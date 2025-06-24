@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Cardiology",
+    "description": "Comprehensive heart care with advanced diagnostic and treatment options.",
+    "icon": "heart"
+  },
+  {
+    "id": 2,
+    "title": "Neurology",
+    "description": "Expert care for disorders of the nervous system and brain.",
+    "icon": "brain"
+  },
+  {
+    "id": 3,
+    "title": "Orthopedics",
+    "description": "Specialized care for bones, joints, ligaments, and muscles.",
+    "icon": "bone"
+  },
+  {
+    "id": 4,
+    "title": "Pediatrics",
+    "description": "Compassionate healthcare for infants, children, and adolescents.",
+    "icon": "baby"
+  },
+  {
+    "id": 5,
+    "title": "Dermatology",
+    "description": "Expert care for skin, hair, and nail conditions.",
+    "icon": "hand-holding-medical"
+  },
+  {
+    "id": 6,
+    "title": "Emergency Care",
+    "description": "24/7 emergency medical services with rapid response times.",
+    "icon": "ambulance"
+  }
+]

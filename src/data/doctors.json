@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Rajesh Kumar",
+    "specialty": "Cardiologist",
+    "experience": "15 years",
+    "image": "/doctors/doctor1.jpg",
+    "bio": "Senior Consultant Cardiologist with extensive experience in interventional cardiology."
+  },
+  {
+    "id": 2,
+    "name": "Dr. Priya Sharma",
+    "specialty": "Neurologist",
+    "experience": "12 years",
+    "image": "/doctors/doctor2.jpg",
+    "bio": "Renowned Neurologist specializing in stroke management and movement disorders."
+  },
+  {
+    "id": 3,
+    "name": "Dr. Amit Patel",
+    "specialty": "Orthopedic Surgeon",
+    "experience": "18 years",
+    "image": "/doctors/doctor3.jpg",
+    "bio": "Expert in joint replacement and sports medicine with international training."
+  },
+  {
+    "id": 4,
+    "name": "Dr. Ananya Reddy",
+    "specialty": "Pediatrician",
+    "experience": "10 years",
+    "image": "/doctors/doctor4.jpg",
+    "bio": "Caring and compassionate pediatrician with expertise in neonatal care."
+  }
+]
