@@ -57,8 +57,8 @@ export const Contact = () => {
                 <div className="ml-4">
                   <h4 className="text-lg font-medium text-gray-900">Email Address</h4>
                   <p className="mt-1 text-gray-600">
-                    info@medicarehospital.com<br />
-                    appointments@medicarehospital.com
+                    info@lifecarehospital.com<br />
+                    appointments@lifecarehospital.com
                   </p>
                 </div>
               </div>

@@ -397,7 +397,7 @@ export default function BookAppointment() {
                 <FaEnvelope className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800">Email Us</h3>
-              <p className="mt-2 text-gray-600">info@medicarehospital.com</p>
+              <p className="mt-2 text-gray-600">info@lifecarehospital.com</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">

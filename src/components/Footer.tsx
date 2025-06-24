@@ -26,7 +26,7 @@ export const Footer = () => {
   const contactInfo = [
     { icon: <FaMapMarkerAlt className="text-primary-600" />, text: 'Road No. 2, Banjara Hills, Hyderabad, Telangana 500034' },
     { icon: <FaPhoneAlt className="text-primary-600" />, text: '+91 40 1234 5678' },
-    { icon: <FaEnvelope className="text-primary-600" />, text: 'info@medicarehospital.com' },
+    { icon: <FaEnvelope className="text-primary-600" />, text: 'info@lifecarehospital.com' },
     { icon: <FaClock className="text-primary-600" />, text: 'Mon-Sat: 8:00 AM - 8:00 PM' },
   ];
   
@@ -45,9 +45,9 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* About Column */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">About MediCare</h3>
+            <h3 className="text-xl font-bold text-white mb-6">About LifeCare</h3>
             <p className="mb-6">
-              MediCare Hospital is a leading multi-specialty healthcare provider in Hyderabad, offering comprehensive medical services with state-of-the-art technology and expert healthcare professionals.
+              LifeCare Hospital is a leading multi-specialty healthcare provider in Hyderabad, offering comprehensive medical services with state-of-the-art technology and expert healthcare professionals.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -132,7 +132,7 @@ export const Footer = () => {
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-400">
-              &copy; {currentYear} MediCare Hospital. All rights reserved.
+              &copy; {currentYear} LifeCare Hospital. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/privacy-policy" className="text-sm text-gray-400 hover:text-white transition duration-300">

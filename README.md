@@ -1,4 +1,4 @@
-# MediCare Hospital Website
+# LifeCare Hospital Website
 
 A modern, responsive hospital website built with Next.js, TypeScript, and Tailwind CSS.
 
