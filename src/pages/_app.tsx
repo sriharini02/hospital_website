@@ -84,7 +84,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
-        <div className="fixed top-4 right-4 z-50 w-[280px] font-sans">
+        <div className="fixed top-4 right-4 z-5 w-[280px] font-sans">
           <ToastContainer 
             position="top-right"
             autoClose={3000}
