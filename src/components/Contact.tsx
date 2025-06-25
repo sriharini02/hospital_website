@@ -83,21 +83,21 @@ export const Contact = () => {
             <div className="mt-8">
               <h4 className="text-lg font-medium text-gray-900 mb-4">Follow Us</h4>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-primary-600">
+                <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors">
                   <span className="sr-only">Facebook</span>
-                  <FaFacebook className="h-6 w-6" />
+                  <img src="https://img.freepik.com/premium-vector/facebook-color-icons_1209566-7.jpg" alt="Facebook" className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-primary-600">
+                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
                   <span className="sr-only">Twitter</span>
-                  <FaTwitter className="h-6 w-6" />
+                  <img src="https://img.freepik.com/premium-vector/twitter-color-icons_1209566-8.jpg" alt="Twitter" className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-primary-600">
+                <a href="#" className="text-gray-400 hover:text-blue-700 transition-colors">
                   <span className="sr-only">LinkedIn</span>
-                  <FaLinkedin className="h-6 w-6" />
+                  <img src="https://img.freepik.com/premium-vector/linkedin-color-icons_1209566-9.jpg" alt="LinkedIn" className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-primary-600">
+                <a href="#" className="text-gray-400 hover:text-pink-600 transition-colors">
                   <span className="sr-only">Instagram</span>
-                  <FaInstagram className="h-6 w-6" />
+                  <img src="https://img.freepik.com/premium-vector/instagram-color-icons_1209566-10.jpg" alt="Instagram" className="w-6 h-6" />
                 </a>
               </div>
             </div>
@@ -206,3 +206,5 @@ export const Contact = () => {
     </section>
   );
 };
+
+export default Contact;

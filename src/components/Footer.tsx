@@ -31,11 +31,26 @@ export const Footer = () => {
   ];
   
   const socialLinks = [
-    { icon: <FaFacebook />, href: '#' },
-    { icon: <FaTwitter />, href: '#' },
-    { icon: <FaLinkedin />, href: '#' },
-    { icon: <FaInstagram />, href: '#' },
-    { icon: <FaYoutube />, href: '#' },
+    { 
+      name: 'Facebook',
+      icon: 'https://img.freepik.com/premium-vector/facebook-color-icons_1209566-7.jpg',
+      href: '#' 
+    },
+    { 
+      name: 'Twitter',
+      icon: 'https://static.vecteezy.com/system/resources/thumbnails/018/930/752/small/twitter-logo-twitter-icon-transparent-free-free-png.png',
+      href: '#' 
+    },
+    { 
+      name: 'Instagram',
+      icon: 'https://static.vecteezy.com/system/resources/previews/042/148/632/non_2x/instagram-logo-instagram-social-media-icon-free-png.png',
+      href: '#' 
+    },
+    { 
+      name: 'LinkedIn',
+      icon: 'https://static.vecteezy.com/system/resources/previews/018/930/480/non_2x/linkedin-logo-linkedin-icon-transparent-free-png.png',
+      href: '#' 
+    }
   ];
 
   return (
@@ -54,10 +69,17 @@ export const Footer = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="text-gray-400 hover:text-white transition duration-300"
-                  aria-label="Social media link"
+                  className="inline-block w-10 h-10 rounded-full overflow-hidden bg-white p-1 hover:opacity-80 transition-opacity duration-300"
+                  aria-label={`${social.name} link`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {React.cloneElement(social.icon, { className: 'h-5 w-5' })}
+                  <img 
+                    src={social.icon} 
+                    alt={social.name}
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
                 </a>
               ))}
             </div>

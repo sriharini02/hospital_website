@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaSearch, FaUserMd, FaCalendarAlt, FaPhoneAlt, FaHospital, FaMapMarkerAlt } from 'react-icons/fa';
 import { Banner } from '@/components/ui/Banner';
+import { ConsultationBanner } from '@/components/ConsultationBanner';
 
 interface Doctor {
   id: number;
@@ -106,18 +107,7 @@ const doctors: Doctor[] = [
     bio: 'Dr. Gupta specializes in high-risk pregnancies and laparoscopic gynecological surgeries, providing compassionate care to women of all ages.',
     qualifications: ['MD (OBG)', 'Fellowship in Reproductive Medicine', 'FMAS'],
     languages: ['English', 'Hindi', 'Bengali']
-  },
-  {
-    id: 9,
-    name: 'Dr. Sanjay Verma',
-    designation: 'Gastroenterologist',
-    department: 'Gastroenterology',
-    experience: '17 years',
-    image: 'https://service-prep.tenethealth.com/images/Physicians/uploads/aynwzjvr.jpg',
-    bio: 'Specializing in advanced endoscopic procedures and liver diseases, Dr. Verma is a leading expert in therapeutic endoscopy and hepatology.',
-    qualifications: ['DM (Gastroenterology)', 'Fellowship in Therapeutic Endoscopy', 'FACP'],
-    languages: ['English', 'Hindi', 'Marathi']
-  },
+  }
 ];
 
 const departments = [
@@ -125,13 +115,12 @@ const departments = [
   'Cardiology',
   'Neurology',
   'Orthopedics',
-  'Pediatrics',
-  'Dermatology',
   'Ophthalmology',
+  'Dentistry',
+  'Pediatrics',
+  'Pulmonology',
   'ENT',
-  'Obstetrics & Gynecology',
-  'Gastroenterology',
-  'Psychiatry'
+  'Dermatology'
 ];
 
 export default function DoctorsPage() {
@@ -213,40 +202,49 @@ export default function DoctorsPage() {
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Our Expert Doctors</h2>
           
           {filteredDoctors.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {filteredDoctors.map((doctor: Doctor) => (
-                <div key={doctor.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative h-64 bg-gray-200">
+                <div key={doctor.id} className="group bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-100 hover:-translate-y-1">
+                  <div className="relative h-48 bg-gray-100 overflow-hidden">
                     <Image
                       src={doctor.image}
                       alt={doctor.name}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-800">{doctor.name}</h3>
-                    <p className="text-blue-600 font-medium">{doctor.designation}</p>
-                    <div className="flex items-center mt-2 text-gray-600">
-                      <FaHospital className="mr-2" />
-                      <span>{doctor.department}</span>
+                  <div className="p-4 transition-colors duration-300 group-hover:bg-gray-50">
+                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-700 transition-colors">
+                      {doctor.name}
+                    </h3>
+                    <p className="text-blue-600 text-sm font-medium">{doctor.designation}</p>
+                    <div className="flex items-center mt-1 text-sm text-gray-600">
+                      <FaHospital className="mr-1.5 flex-shrink-0 text-blue-500" size={12} />
+                      <span className="truncate">{doctor.department}</span>
                     </div>
-                    <div className="flex items-center mt-1 text-gray-600">
-                      <FaCalendarAlt className="mr-2" />
-                      <span>{doctor.experience} experience</span>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <FaCalendarAlt className="mr-1.5 flex-shrink-0 text-blue-400" size={12} />
+                      <span>{doctor.experience} exp</span>
                     </div>
-                    <div className="mt-4 flex justify-between items-center">
+                    <div className="mt-3 flex justify-between items-center">
                       <button 
                         onClick={() => setSelectedDoctor(doctor)}
-                        className="text-blue-600 hover:text-blue-800 font-medium"
+                        className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 flex items-center group/button"
                       >
                         View Profile
+                        <span className="ml-1 opacity-0 -translate-x-2 group-hover/button:opacity-100 group-hover/button:translate-x-0 transition-all duration-200">→</span>
                       </button>
                       <Link 
                         href="/book-appointment" 
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-200"
+                        className="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // You can add any booking logic here
+                        }}
                       >
-                        Book Appointment
+                        Book Now
                       </Link>
                     </div>
                   </div>
@@ -331,6 +329,11 @@ export default function DoctorsPage() {
           </div>
         </div>
       )}
+      
+      {/* Consultation Banner */}
+      <div className="mt-16">
+        <ConsultationBanner />
+      </div>
     </div>
   );
 }
