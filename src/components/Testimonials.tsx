@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FaQuoteLeft, FaQuoteRight, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { scrollToSection } from '@/utils/scrollToSection';
 
 interface Testimonial {
   id: number;
@@ -40,6 +42,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
 );
 
 export function Testimonials() {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   
   const testimonials: Testimonial[] = [
@@ -98,13 +101,33 @@ export function Testimonials() {
     setActiveIndex((prev: number) => (prev === 0 ? totalSlides - 1 : prev - 1));
   };
 
+  const handleLeaveReview = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (router.pathname === '/contact') {
+      // If already on contact page, just scroll to the form
+      scrollToSection('contact-form');
+    } else {
+      // If on another page, navigate to contact page first, then scroll
+      router.push('/contact').then(() => {
+        // Small timeout to ensure the page has loaded
+        setTimeout(() => {
+          scrollToSection('contact-form');
+        }, 100);
+      });
+    }
+  }, [router]);
+
   return (
-    <section id="testimonials" className="py-20 bg-gray-50" style={{ paddingTop: '2px' }}>
+    <section id="testimonials" className="pt-12 pb-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Testimonials</span>
-          <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">What Our Patients Say</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+          <div className="flex justify-center mb-4">
+            <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-full">
+              Testimonials
+            </span>
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">What Our Patients Say</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Hear from our patients about their experiences and the quality care they received at our hospital.
           </p>
@@ -117,14 +140,7 @@ export function Testimonials() {
             ))}
           </div>
 
-          <div className="flex justify-center space-x-2 mt-8">
-            <button
-              onClick={prevSlide}
-              className="w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              aria-label="Previous"
-            >
-              <FaChevronLeft />
-            </button>
+          <div className="flex justify-center items-center space-x-2 mt-8">
             {[...Array(totalSlides)].map((_, index) => (
               <button
                 key={index}
@@ -134,7 +150,10 @@ export function Testimonials() {
               />
             ))}
           </div>
-          <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
+          <button 
+            onClick={handleLeaveReview}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300"
+          >
             Leave a Review
           </button>
         </div>

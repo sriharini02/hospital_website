@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FaHeartbeat, FaProcedures, FaUserMd, FaTeeth, FaBrain, FaBone, FaArrowRight } from 'react-icons/fa';
-import { fadeInUp, stagger, slideIn } from '@/utils/animations';
+import { fadeInUp, stagger } from '@/utils/animations';
+import { AnimatedHeading } from './ui/AnimatedHeading';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -93,22 +94,24 @@ export function Services() {
           viewport={{ once: true }}
           variants={stagger}
         >
-          <motion.span 
-            className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider mb-2"
-            variants={fadeInUp}
-          >
-            Our Services
-          </motion.span>
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mt-2 mb-4"
-            variants={fadeInUp}
-          >
-            Comprehensive Healthcare Solutions
-          </motion.h2>
           <motion.div 
-            className="w-20 h-1 bg-blue-600 mx-auto"
-            variants={fadeInUp}
-          ></motion.div>
+            className="flex justify-center mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-full">
+              Our Services
+            </span>
+          </motion.div>
+          <AnimatedHeading 
+            as="h2" 
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-2"
+            delay={0.2}
+          >
+            Comprehensive Healthcare Services
+          </AnimatedHeading>
           <motion.p 
             className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto"
             variants={fadeInUp}

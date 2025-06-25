@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Link from 'next/link';
-
 import { Specialities } from '@/components/Specialities';
+import { Banner } from '@/components/ui/Banner';
+import HealthcareServices from '@/components/HealthcareServices';
 
 export default function OurSpecialities() {
   return (
@@ -36,17 +36,14 @@ export default function OurSpecialities() {
           </div>
         </section>*/}
 
-        {/* Hero Banner */}
-        {/* Hero Banner */}
-<div className="relative bg-blue-700 text-white py-20">
-  <div className="absolute inset-0 bg-black opacity-50"></div>
-  <div className="container mx-auto px-4 relative z-10 text-center">
-    <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Specialities</h1>
-    <div className="text-lg">
-      <Link href="/" className="hover:underline">Home</Link> &gt; <span>Our Specialities</span>
-    </div>
-  </div>
-</div>
+        {/* Banner Section */}
+        <Banner 
+          title="Our Specialities"
+          breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'Our Specialities' }
+          ]}
+        />
         
 
         {/* Introduction */}
@@ -65,6 +62,9 @@ export default function OurSpecialities() {
 
         {/* Specialities Grid */}
         <Specialities />
+        
+        {/* Healthcare Services Steps */}
+        <HealthcareServices />
 
         {/* Emergency Care Section */}
         <section className="bg-gray-50 py-16">

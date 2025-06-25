@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaSearch, FaUserMd, FaCalendarAlt, FaPhoneAlt, FaHospital, FaMapMarkerAlt } from 'react-icons/fa';
+import { Banner } from '@/components/ui/Banner';
 
 interface Doctor {
   id: number;
@@ -153,15 +154,13 @@ export default function DoctorsPage() {
       </Head>
 
       {/* Banner Section */}
-      <div className="relative bg-blue-700 text-white py-20">
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Meet Our Doctors</h1>
-          <div className="text-lg">
-            <Link href="/" className="hover:underline">Home</Link> &gt; <span>Our Doctors</span>
-          </div>
-        </div>
-      </div>
+      <Banner 
+        title="Meet Our Doctors"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Our Doctors' }
+        ]}
+      />
 
       {/* Intro Section */}
       <section className="py-12 bg-white">

@@ -131,6 +131,11 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
 };
 
 export function Doctors() {
+  console.log('Doctors component rendering');
+  React.useEffect(() => {
+    console.log('Doctors component mounted');
+    return () => console.log('Doctors component unmounted');
+  }, []);
   const doctors: DoctorCardProps[] = [
     {
       name: 'Dr.A Sharma',
@@ -193,24 +198,22 @@ export function Doctors() {
           viewport={{ once: true }}
           variants={stagger}
         >
-          <motion.span 
-            className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider mb-2"
+          <motion.div 
+            className="flex justify-center mb-2"
             variants={fadeInUp}
           >
-            Our Doctors
-          </motion.span>
+            <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-full">
+              Our Doctors
+            </span>
+          </motion.div>
           <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
+            className="text-4xl font-bold text-gray-900 mb-2"
             variants={fadeInUp}
           >
             Meet Our Expert Specialists
           </motion.h2>
-          <motion.div 
-            className="w-20 h-1 bg-blue-600 mx-auto"
-            variants={fadeInUp}
-          ></motion.div>
           <motion.p 
-            className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto"
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
             variants={fadeInUp}
           >
             Our team of highly qualified doctors is dedicated to providing the best healthcare services with compassion and expertise.

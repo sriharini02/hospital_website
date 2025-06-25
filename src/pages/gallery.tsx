@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Banner } from '@/components/ui/Banner';
 import { 
   FaSearch, 
   FaImages, 
@@ -176,7 +178,12 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div 
+      className="min-h-screen bg-gray-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Head>
         <title>Our Gallery | LifeCare Hospital</title>
         <meta name="description" content="Explore our hospital's state-of-the-art facilities, patient care, and community events through our photo gallery." />
@@ -184,15 +191,13 @@ export default function GalleryPage() {
 
       
       {/* Hero Banner */}
-<div className="relative bg-blue-700 text-white py-20">
-  <div className="absolute inset-0 bg-black opacity-50"></div>
-  <div className="container mx-auto px-4 relative z-10 text-center">
-    <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Gallery</h1>
-    <div className="text-lg">
-      <Link href="/" className="hover:underline">Home</Link> &gt; <span>Gallery</span>
-    </div>
-  </div>
-</div>
+      <Banner 
+        title="Our Gallery"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Gallery' }
+        ]}
+      />
       
 
       {/* Gallery Content */}
@@ -312,6 +317,6 @@ export default function GalleryPage() {
           </button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaCalendarAlt, FaPhone } from 'react-icons/fa';
-import { fadeInUp, stagger, slideIn } from '@/utils/animations';
+import { fadeInUp, stagger } from '@/utils/animations';
+import { AnimatedHeading } from './ui/AnimatedHeading';
 
 // Hospital images for the hero carousel with dimensions
 const heroImages = [
@@ -34,7 +35,6 @@ const heroImages = [
     height: 1080
   }
 ];
-
 
 export function Hero() {
   const stats = [
@@ -79,20 +79,17 @@ export function Hero() {
               Welcome to LifeCare Hospital
             </motion.span>
             
-            <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6"
-              variants={fadeInUp}
-            >
-              Your Health is Our <span className="text-blue-600">Top Priority</span>
-            </motion.h1>
+            <div className="w-full mb-4">
+              <AnimatedHeading as="h1" className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                <div className="mb-0">Your Health is Our</div>
+                <div className="text-blue-600 -mt-2">Top Priority</div>
+              </AnimatedHeading>
+            </div>
             
-            <motion.p 
-              className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0"
-              variants={fadeInUp}
-            >
+            <AnimatedHeading as="h2" className="text-lg md:text-xl text-gray-600 mb-6 max-w-2xl" delay={0.2}>
               Providing exceptional healthcare services with compassion and cutting-edge technology. 
               Our team of expert doctors is dedicated to your well-being.
-            </motion.p>
+            </AnimatedHeading>
             
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"

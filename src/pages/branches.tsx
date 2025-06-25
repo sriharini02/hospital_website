@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { FaSearch, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaDirections } from 'react-icons/fa';
+import { Banner } from '@/components/ui/Banner';
 
 interface Branch {
   id: number;
@@ -169,41 +170,13 @@ export default function BranchesPage() {
       </Head>
 
       {/* Banner Section */}
-      <div className="relative bg-blue-700 text-white pt-16 pb-10 md:pt-20 md:pb-12 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-50">
-          
-          
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium mb-4 border border-white/20">
-            <FaMapMarkerAlt className="mr-2 animate-pulse" />
-            <span>Our Locations</span>
-          </div>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 leading-tight">
-            Find Your Nearest <br className="hidden md:block" />
-            <span className="text-blue-100">LifeCare Branch</span>
-          </h1>
-          <p className="text-sm md:text-base max-w-3xl mx-auto text-blue-100/90 mb-3">
-            Expert healthcare services across Hyderabad with state-of-the-art facilities.
-            <span className="hidden md:inline"> We're here for you 24/7.</span>
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-2 text-sm">
-            <div className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-              <div className="bg-green-400 rounded-full w-3 h-3 mr-2 animate-pulse"></div>
-              <span className="text-sm">6 Locations</span>
-            </div>
-            <div className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-              <FaClock className="text-yellow-400 mr-2" />
-              <span className="text-sm">24/7 Emergency</span>
-            </div>
-          </div>
-        </div>
-        
-        {/* Animated circles 
-        <div className="absolute -bottom-12 -right-12 w-24 h-24 rounded-full bg-blue-400/20"></div>
-        <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-teal-400/20"></div>*/}
-      </div>
+      <Banner 
+        title="Our Branches"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Branches' }
+        ]}
+      />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 pt-20 pb-16 md:pt-35px md:pb-35px -mt-4">

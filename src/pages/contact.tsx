@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope, FaClock, FaAmbulance, FaCalendarAlt, FaUser, FaComment } from 'react-icons/fa';
+import { Banner } from '@/components/ui/Banner';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -117,19 +118,17 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50">
       <Head>
         <title>Contact Us | Hospital Name</title>
-        <meta name="description" content="Get in touch with us for appointments, inquiries, or emergency services. We're here to help you with all your healthcare needs." />
+        <meta name="description" content="Get in touch with us for appointments, inquiries, or feedback. We're here to help with all your healthcare needs." />
       </Head>
 
-      {/* Hero Banner */}
-      <div className="relative bg-blue-700 text-white py-20">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <div className="text-lg">
-            <Link href="/" className="hover:underline">Home</Link> &gt; <span>Contact Us</span>
-          </div>
-        </div>
-      </div>
+      {/* Banner Section */}
+      <Banner 
+        title="Contact Us"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Contact' }
+        ]}
+      />
 
       {/* Contact Info & Map */}
       <section className="py-16 bg-white">
@@ -223,7 +222,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-16 bg-white">
+      <section id="contact-form" className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Send Us a Message</h2>

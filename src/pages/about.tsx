@@ -1,8 +1,53 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Banner } from '@/components/ui/Banner';
 import { FaHospital, FaUserMd, FaAward, FaHeartbeat, FaUsers, FaCalendarAlt, FaCheckCircle } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
+
+// Import types from framer-motion
+import { Variants, Transition } from 'framer-motion';
+
+// Define a custom easing function type
+type EasingFunction = (t: number) => number;
+
+// Animation variants with proper typing
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.6, -0.05, 0.01, 0.99] as unknown as EasingFunction
+    }
+  }
+};
+
+const stagger: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const slideIn = (direction: 'left' | 'right' = 'left'): Variants => ({
+  hidden: { 
+    opacity: 0, 
+    x: direction === 'left' ? -50 : 50 
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.6, -0.05, 0.01, 0.99] as unknown as EasingFunction
+    }
+  }
+});
 
 // Import VideoCarousel component
 const VideoCarousel = dynamic(() => import('../components/VideoCarousel'), {
@@ -73,88 +118,285 @@ export default function AboutUs() {
       </Head>
 
       {/* Hero Banner */}
-      <div className="relative bg-blue-700 text-white py-20">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
-          <div className="text-lg">
-            <Link href="/" className="hover:underline">Home</Link> &gt; <span>About Us</span>
-          </div>
-        </div>
-      </div>
+      <Banner 
+        title="About Us"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'About Us' }
+        ]}
+      />
 
       {/* Our Story */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-16 bg-white overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
-              <p className="text-gray-600 mb-4">
+          <motion.div 
+            className="flex flex-col md:flex-row items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+          >
+            <motion.div 
+              className="md:w-1/2 mb-12 md:mb-0 md:pr-8"
+              variants={fadeInUp}
+            >
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                Our Story
+              </motion.h2>
+              <motion.p 
+                className="text-gray-600 mb-4 text-lg leading-relaxed"
+                variants={fadeInUp}
+              >
                 Founded in 2000, our hospital began as a small healthcare facility with a big vision: to provide exceptional medical care to our community. 
-                What started as a modest 50-bed hospital has grown into a leading multi-specialty healthcare institution with state-of-the-art facilities.
-              </p>
-              <p className="text-gray-600 mb-6">
-                Over the years, we've expanded our services, incorporated cutting-edge technology, and assembled a team of highly skilled medical professionals 
-                who share our commitment to excellence in patient care.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/doctors" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition-colors duration-200">
-                  Meet Our Doctors
-                </Link>
-                <Link href="/contact" className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-2 rounded-md font-medium transition-colors duration-200">
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-            <div className="md:w-1/2">
-              <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
+              </motion.p>
+              <motion.p 
+                className="text-gray-600 mb-8 text-lg leading-relaxed"
+                variants={fadeInUp}
+              >
+                What started as a modest 50-bed hospital has grown into a leading multi-specialty healthcare institution with state-of-the-art facilities and a team of highly skilled medical professionals.
+              </motion.p>
+              <motion.div 
+                className="flex flex-wrap gap-4"
+                variants={fadeInUp}
+              >
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                  <Link href="/doctors" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+                    Meet Our Doctors
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                  <Link href="/contact" className="inline-block border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300">
+                    Contact Us
+                  </Link>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="md:w-1/2 relative"
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ 
+                scale: 1, 
+                opacity: 1,
+                transition: { 
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1]
+                } 
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.01] transition-transform duration-500">
                 <Image
                   src="https://content.jdmagicbox.com/v2/comp/hyderabad/f4/040pxx40.xx40.220714152317.h2f4/catalogue/lifecare-hospitals-chaitanya-nagar-b-n-reddy-nagar-hyderabad-hospitals-q0ik222w9n.jpg"
                   alt="Our Hospital"
                   fill
-                  className="object-cover"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
-            </div>
-          </div>
+              <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-5 rounded-xl shadow-2xl z-10 overflow-hidden min-w-[140px]">
+                <div className="relative z-10">
+                  <span className="block text-2xl font-bold">25+</span>
+                  <span className="text-sm">Years Experience</span>
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-white/10 rounded-full"></div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Stats */}
-      <section className="py-16 bg-blue-50">
+      <motion.section 
+        className="py-20 bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Hospital at a Glance</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Hospital at a Glance</h2>
+          </motion.div>
+          
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.2
+                }
+              }
+            }}
+          >
             {stats.map((stat, index) => (
-              <div key={index} className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <motion.div 
+                key={index} 
+                className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      duration: 0.5,
+                      ease: [0.6, -0.05, 0.01, 0.99]
+                    }
+                  }
+                }}
+                whileHover={{ scale: 1.03 }}
+              >
                 <div className="flex flex-col items-center">
-                  {stat.icon}
-                  <span className="text-3xl font-bold text-gray-800">{stat.number}</span>
-                  <span className="text-gray-600">{stat.label}</span>
+                  <motion.div 
+                    className="mb-4"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    {stat.icon}
+                  </motion.div>
+                  <motion.span 
+                    className="block text-3xl font-bold text-gray-800 mb-1"
+                    initial={{ scale: 0.8 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.5,
+                      delay: 0.1 * index
+                    }}
+                  >
+                    {stat.number}
+                  </motion.span>
+                  <span className="text-gray-600 text-sm md:text-base">{stat.label}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Mission, Vision & Values */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-20 bg-white overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Our Guiding Principles</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Guiding Principles</h2>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                  delayChildren: 0.2
+                }
+              }
+            }}
+          >
             {values.map((value, index) => (
-              <div key={index} className="bg-blue-50 p-8 rounded-lg hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  {value.icon}
-                  <h3 className="text-xl font-semibold ml-2">{value.title}</h3>
-                </div>
-                <p className="text-gray-600">{value.description}</p>
-              </div>
+              <motion.div 
+                key={index} 
+                className="bg-white p-8 rounded-xl shadow-lg border border-blue-50 select-none cursor-default"
+                variants={{
+                  hidden: { opacity: 0, y: 30, scale: 0.95 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    scale: 1,
+                    transition: { 
+                      duration: 0.6,
+                      ease: [0.6, -0.05, 0.01, 0.99]
+                    }
+                  }
+                }}
+                whileHover={{ 
+                  y: -8,
+                  scale: 1.02,
+                  rotate: index % 2 === 0 ? 0.5 : -0.5,
+                  boxShadow: '0 15px 30px -5px rgba(59, 130, 246, 0.2)',
+                  borderColor: 'rgba(59, 130, 246, 0.3)'
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 15
+                }}
+              >
+                <motion.div 
+                  className="flex items-center mb-6"
+                  whileHover={{ x: 5 }}
+                >
+                  <motion.div 
+                    className="p-3 bg-blue-100 rounded-lg text-blue-600"
+                    whileHover={{ 
+                      rotate: [0, 10, -5, 10, 0],
+                      scale: [1, 1.1, 1.05, 1.1, 1],
+                    }}
+                    transition={{ 
+                      duration: 1,
+                      ease: 'easeInOut',
+                      times: [0, 0.2, 0.5, 0.8, 1]
+                    }}
+                  >
+                    {value.icon}
+                  </motion.div>
+                  <motion.h3 
+                    className="text-xl font-semibold ml-4 text-gray-800"
+                    whileHover={{ color: '#2563eb' }}
+                  >
+                    {value.title}
+                  </motion.h3>
+                </motion.div>
+                <motion.p 
+                  className="text-gray-600 leading-relaxed"
+                  whileHover={{ color: '#4b5563' }}
+                >
+                  {value.description}
+                </motion.p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Video Carousel */}
       <VideoCarousel />

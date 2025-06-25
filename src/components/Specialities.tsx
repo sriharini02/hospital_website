@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaHeartbeat, FaBrain, FaBone, FaEye, FaTooth, FaBaby, FaLungs, FaProcedures, FaUserMd, FaStethoscope, FaClinicMedical, FaSyringe } from 'react-icons/fa';
 
 const specialities = [
@@ -82,24 +83,24 @@ export function Specialities() {
               key={index}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="p-6">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-blue-50 rounded-md p-3">
-                    {speciality.icon}
+              <div className="p-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-blue-50 rounded-md p-2">
+                    {React.cloneElement(speciality.icon, { className: 'h-8 w-8 text-blue-600' })}
                   </div>
-                  <h3 className="ml-4 text-xl font-semibold text-gray-900">
+                  <h3 className="ml-3 text-lg font-semibold text-gray-900">
                     {speciality.name}
                   </h3>
                 </div>
-                <p className="mt-4 text-gray-600">
+                <p className="mt-3 text-sm text-gray-600 line-clamp-3">
                   {speciality.description}
                 </p>
-                <div className="mt-6">
+                <div className="mt-4">
                   <a
                     href="/contact"
-                    className="text-blue-600 font-medium hover:text-blue-500"
+                    className="text-sm text-blue-600 font-medium hover:text-blue-500 inline-flex items-center"
                   >
-                    Learn more <span aria-hidden="true">→</span>
+                    Learn more <span className="ml-1">→</span>
                   </a>
                 </div>
               </div>

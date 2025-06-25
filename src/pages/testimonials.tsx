@@ -1,7 +1,7 @@
 import { Testimonials } from '@/components/Testimonials';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { Banner } from '@/components/ui/Banner';
 
 export default function TestimonialsPage() {
   return (
@@ -10,16 +10,14 @@ export default function TestimonialsPage() {
         <title>Patient Testimonials - LifeCare Hospital</title>
         <meta name="description" content="Read what our patients have to say about their experiences at LifeCare Hospital. Real stories from people who have received care from our expert medical team." />
       </Head>
-      {/* Hero Banner */}
-<div className="relative bg-blue-700 text-white py-20">
-  <div className="absolute inset-0 bg-black opacity-50"></div>
-  <div className="container mx-auto px-4 relative z-10 text-center">
-    <h1 className="text-4xl md:text-5xl font-bold mb-4"> Patient Testimonials</h1>
-    <div className="text-lg">
-      <Link href="/" className="hover:underline">Home</Link> &gt; <span>Testimonials</span>
-    </div>
-  </div>
-</div>
+      {/* Banner Section */}
+      <Banner 
+        title="Patient Testimonials"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Testimonials' }
+        ]}
+      />
       {/* Testimonials Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">

@@ -7,6 +7,22 @@ export function Header() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Navigation items
+  const navigation = [
+    { name: 'Home', href: '/' },
+    { 
+      name: 'About Us', 
+      href: '/about',
+      dropdown: [
+        { name: 'Our Gallery', href: '/gallery' },
+        { name: 'Our Branches', href: '/branches' },
+      ]
+    },
+    { name: 'Our Specialities', href: '/our-specialities' },
+    { name: 'Our Doctors', href: '/doctors' },
+    { name: 'Contact', href: '/contact' },
+  ];
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -20,22 +36,6 @@ export function Header() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { 
-      name: 'About Us', 
-      href: '/about',
-      dropdown: [
-        { name: 'Our Doctors', href: '/doctors' },
-        { name: 'Our Gallery', href: '/gallery' },
-        { name: 'Our Branches', href: '/branches' },
-      ]
-    },
-    { name: 'Our Specialities', href: '/our-specialities' },
-    { name: 'Testimonials', href: '/testimonials' },
-    { name: 'Contact', href: '/contact' },
-  ];
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -119,9 +119,10 @@ export function Header() {
             <a
               href="tel:+919876543210"
               className="flex items-center px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors"
+              title="Emergency Call"
             >
               <FaPhone className="mr-2 transform rotate-90" />
-              <span>Emergency: +91 98765 43210</span>
+              <span>Emergency</span>
             </a>
           </div>
 
@@ -207,9 +208,11 @@ export function Header() {
             ))}
             <a
               href="tel:+919876543210"
-              className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 text-center"
+              className="flex items-center justify-center px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 text-center"
+              title="Emergency Call"
             >
-              Emergency: +91 98765 43210
+              <FaPhone className="mr-2 transform rotate-90" />
+              <span>Emergency</span>
             </a>
           </div>
         </div>

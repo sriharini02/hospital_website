@@ -45,8 +45,8 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* About Column */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">About LifeCare</h3>
-            <p className="mb-6">
+            <h3 className="text-2xl font-bold text-white mb-6">About LifeCare</h3>
+            <p className="mb-6 text-base">
               LifeCare Hospital is a leading multi-specialty healthcare provider in Hyderabad, offering comprehensive medical services with state-of-the-art technology and expert healthcare professionals.
             </p>
             <div className="flex space-x-4">
@@ -65,13 +65,13 @@ export const Footer = () => {
           
           {/* Quick Links Column */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition duration-300"
+                    className="text-gray-400 hover:text-white transition duration-300 text-base"
                   >
                     {link.name}
                   </Link>
@@ -82,13 +82,13 @@ export const Footer = () => {
           
           {/* Services Column */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">Our Services</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Our Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="text-gray-400 hover:text-white transition duration-300"
+                    className="text-gray-400 hover:text-white transition duration-300 text-base"
                   >
                     {service.name}
                   </Link>
@@ -99,39 +99,24 @@ export const Footer = () => {
           
           {/* Contact Column */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">Contact Us</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Contact Us</h3>
             <ul className="space-y-4">
               {contactInfo.map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="mt-1 mr-3">{item.icon}</span>
-                  <span>{item.text}</span>
+                  <span className="mt-1 mr-3 text-lg">{item.icon}</span>
+                  <span className="text-base">{item.text}</span>
                 </li>
               ))}
             </ul>
-            
-            <div className="mt-6">
-              <h4 className="font-semibold text-white mb-2">Newsletter</h4>
-              <p className="text-sm text-gray-400 mb-3">Subscribe to our newsletter for health tips and updates.</p>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="px-4 py-2 w-full rounded-l-md focus:outline-none text-gray-900"
-                />
-                <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-r-md transition duration-300">
-                  Subscribe
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
       
       {/* Copyright Bar */}
-      <div className="border-t border-gray-800">
-        <div className="container mx-auto px-6 py-6">
+      <div className="border-t border-gray-800 mt-10">
+        <div className="container mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-gray-400">
+            <p className="text-base text-gray-400">
               &copy; {currentYear} LifeCare Hospital. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">

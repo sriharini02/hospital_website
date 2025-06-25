@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FaCalendarAlt, FaClock, FaUser, FaPhone, FaEnvelope, FaHospital } from 'react-icons/fa';
+import { Banner } from '@/components/ui/Banner';
 import { toast } from 'react-toastify';
 
 interface FormData {
@@ -145,13 +146,14 @@ export default function BookAppointment() {
         <meta name="description" content="Book an appointment with our expert doctors" />
       </Head>
 
-      {/* Hero Section */}
-      <div className="bg-blue-600 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">Book an Appointment</h1>
-          <p className="text-xl">Schedule your visit with our expert healthcare professionals</p>
-        </div>
-      </div>
+      {/* Banner Section */}
+      <Banner 
+        title="Book an Appointment"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Book Appointment' }
+        ]}
+      />
 
       {/* Appointment Form */}
       <div className="container mx-auto px-4 py-12 max-w-4xl" style={{ paddingTop: '35px' }}>

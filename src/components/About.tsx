@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaAward, FaUserMd, FaProcedures, FaHospital } from 'react-icons/fa';
+import { fadeInUp, stagger } from '@/utils/animations';
+import { AnimatedHeading } from './ui/AnimatedHeading';
 
 export const About = () => {
   const stats = [
@@ -31,7 +34,32 @@ export const About = () => {
           </div>
           
           <div className="md:w-1/2">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">About LifeCare Hospital</h2>
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="text-left"
+            >
+              <motion.div 
+                className="mb-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <span className="inline-block text-primary-600 font-semibold text-sm uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-full">
+                  About Us
+                </span>
+              </motion.div>
+              <AnimatedHeading 
+                as="h2" 
+                className="text-4xl font-bold text-gray-900 mb-6"
+                delay={0.4}
+              >
+                About LifeCare Hospital
+              </AnimatedHeading>
+
+            </motion.div>
             <p className="text-gray-600 mb-6">
               Established in 2000, LifeCare Hospital has been a trusted name in healthcare in Hyderabad, providing comprehensive medical services with a patient-centered approach.
             </p>
