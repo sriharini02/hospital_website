@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import '../../styles/globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
@@ -84,6 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
+
         <div className="fixed top-4 right-4 z-5 w-[280px] font-sans">
           <ToastContainer 
             position="top-right"

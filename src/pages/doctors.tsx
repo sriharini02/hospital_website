@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaSearch, FaUserMd, FaCalendarAlt, FaPhoneAlt, FaHospital, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaSearch, FaUserMd, FaCalendarAlt, FaPhoneAlt, FaHospital, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn, FaArrowRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { Banner } from '@/components/ui/Banner';
 import { ConsultationBanner } from '@/components/ConsultationBanner';
 
@@ -164,101 +165,86 @@ export default function DoctorsPage() {
         </div>
       </section>
 
-      {/* Search and Filter 
-      <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="relative flex-grow">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaSearch className="text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Search by doctor name or specialty..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-              <select
-                className="block w-full md:w-64 px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                value={selectedDept}
-                onChange={(e) => setSelectedDept(e.target.value)}
-              >
-                {departments.map((dept) => (
-                  <option key={dept} value={dept}>{dept}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
-      </section>
-      */}
-
       {/* Doctors Grid */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Our Expert Doctors</h2>
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Expert Doctors</h2>
+            <p className="text-lg text-gray-600 mt-4">
+              Our team of highly qualified doctors is dedicated to providing exceptional healthcare services with compassion and expertise.
+            </p>
+          </div>
           
           {filteredDoctors.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {filteredDoctors.map((doctor: Doctor) => (
-                <div key={doctor.id} className="group bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-100 hover:-translate-y-1">
-                  <div className="relative h-48 bg-gray-100 overflow-hidden">
-                    <Image
-                      src={doctor.image}
-                      alt={doctor.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="p-4 transition-colors duration-300 group-hover:bg-gray-50">
-                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-700 transition-colors">
+                <motion.div 
+                  key={doctor.id} 
+                  className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="relative w-full flex flex-col items-center">
+                    <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 group-hover:ring-4 ring-blue-100 ring-offset-4 ring-offset-white transition-all duration-300">
+                      <Image
+                        src={doctor.image}
+                        alt={doctor.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-2">
+                        <a href="#" className="bg-white/90 rounded-full p-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+                          <FaFacebookF size={12} />
+                        </a>
+                        <a href="#" className="bg-white/90 rounded-full p-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+                          <FaTwitter size={12} />
+                        </a>
+                        <a href="#" className="bg-white/90 rounded-full p-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+                          <FaLinkedinIn size={12} />
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors text-center">
                       {doctor.name}
                     </h3>
-                    <p className="text-blue-600 text-sm font-medium">{doctor.designation}</p>
-                    <div className="flex items-center mt-1 text-sm text-gray-600">
-                      <FaHospital className="mr-1.5 flex-shrink-0 text-blue-500" size={12} />
-                      <span className="truncate">{doctor.department}</span>
+                    <p className="text-blue-600 font-medium text-center mb-3">{doctor.designation}</p>
+                    
+                    <div className="text-center mb-4">
+                      <p className="text-gray-600 text-sm mb-2">
+                        <FaHospital className="inline-block mr-2 text-blue-500" />
+                        {doctor.department}
+                      </p>
+                      <p className="text-gray-500 text-sm">
+                        <FaCalendarAlt className="inline-block mr-2 text-blue-400" />
+                        {doctor.experience} Experience
+                      </p>
                     </div>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <FaCalendarAlt className="mr-1.5 flex-shrink-0 text-blue-400" size={12} />
-                      <span>{doctor.experience} exp</span>
-                    </div>
-                    <div className="mt-3 flex justify-between items-center">
-                      <button 
-                        onClick={() => setSelectedDoctor(doctor)}
-                        className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 flex items-center group/button"
-                      >
-                        View Profile
-                        <span className="ml-1 opacity-0 -translate-x-2 group-hover/button:opacity-100 group-hover/button:translate-x-0 transition-all duration-200">→</span>
-                      </button>
-                      <Link 
-                        href="/book-appointment" 
-                        className="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // You can add any booking logic here
-                        }}
-                      >
-                        Book Now
-                      </Link>
-                    </div>
+                    
+                    <a 
+                      href={`/book-appointment?doctor=${encodeURIComponent(doctor.name)}`}
+                      className="mt-2 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 group-hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors"
+                    >
+                      View Profile
+                      <FaArrowRight className="ml-2 text-xs group-hover:translate-x-1 transition-transform" />
+                    </a>
                   </div>
-                </div>
+                  <div className="absolute inset-0 -z-10 rounded-xl bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg"></div>
+                </motion.div>
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">No doctors found matching your search criteria.</p>
+              <p className="text-gray-600">No doctors found matching your criteria.</p>
             </div>
           )}
         </div>
       </section>
 
+      {/* Doctor Details Modal */}
       {/* Doctor Profile Modal */}
       {selectedDoctor && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -329,11 +315,6 @@ export default function DoctorsPage() {
           </div>
         </div>
       )}
-      
-      {/* Consultation Banner */}
-      <div className="mt-16">
-        <ConsultationBanner />
-      </div>
     </div>
   );
 }

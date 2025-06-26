@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import { Hero } from '@/components/Hero';
-import { Services } from '@/components/Services';
 import { About } from '@/components/About';
 import { Doctors } from '@/components/Doctors';
 import { Testimonials } from '@/components/Testimonials';
 import { Contact } from '@/components/Contact';
 import { CTA } from '../components/CTA';
+import ComprehensiveHealthcare from '@/components/ComprehensiveHealthcare';
+import { WhatMakesUsSpecial } from '@/components/WhatMakesUsSpecial';
 
 export default function Home() {
   return (
@@ -19,8 +20,9 @@ export default function Home() {
 
       <main className="flex-grow">
         <Hero />
-        <Services />
         <About />
+        <ComprehensiveHealthcare />
+        <WhatMakesUsSpecial />
         <Doctors />
         <Testimonials />
         <CTA />

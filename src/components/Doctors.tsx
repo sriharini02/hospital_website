@@ -1,267 +1,201 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaUserMd, FaStar, FaArrowRight } from 'react-icons/fa';
-import { fadeInUp, stagger, slideIn } from '@/utils/animations';
+import { FaUserMd, FaCalendarAlt, FaArrowRight, FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { fadeInUp, stagger } from '@/utils/animations';
 
 interface DoctorCardProps {
+  id: number;
   name: string;
-  specialization: string;
-  experience: number;
-  rating: number;
-  image?: string;
-  social: {
-    facebook?: string;
-    twitter?: string;
-    linkedin?: string;
-    instagram?: string;
-  };
+  designation: string;
+  department: string;
+  experience: string;
+  image: string;
+  bio: string;
+  qualifications: string[];
+  languages: string[];
 }
 
 const DoctorCard: React.FC<DoctorCardProps> = ({
+  id,
   name,
-  specialization,
+  designation,
+  department,
   experience,
-  rating,
   image,
-  social = {}
+  bio,
+  qualifications,
+  languages
 }) => {
-  const { facebook, twitter, linkedin, instagram } = social;
-
   return (
     <motion.div 
-      className="group bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col"
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={fadeInUp}
-      whileHover={{ scale: 1.02 }}
+      className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="relative overflow-hidden">
-        <div className="h-72 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center relative">
-          {image ? (
-            <img 
-              src={image} 
-              alt={name} 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-            />
-          ) : (
-            <FaUserMd className="text-gray-300 text-8xl" />
-          )}
-        </div>
-        <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold flex items-center shadow-md">
-          <FaStar className="mr-1 text-yellow-700" /> {rating}
-        </div>
-        
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <div className="text-white">
-            <h3 className="text-2xl font-bold mb-1">{name}</h3>
-            <p className="text-blue-200 font-medium">{specialization}</p>
+      <div className="relative w-full flex flex-col items-center">
+        <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 group-hover:ring-4 ring-blue-100 ring-offset-4 ring-offset-white transition-all duration-300">
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-2">
+            <a href="#" className="bg-white/90 rounded-full p-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+              <FaFacebookF size={12} />
+            </a>
+            <a href="#" className="bg-white/90 rounded-full p-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+              <FaTwitter size={12} />
+            </a>
+            <a href="#" className="bg-white/90 rounded-full p-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+              <FaLinkedinIn size={12} />
+            </a>
           </div>
         </div>
-      </div>
-      
-      <div className="p-6 flex-grow flex flex-col">
-        <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{name}</h3>
-          <p className="text-blue-600 font-medium">{specialization}</p>
-          <p className="text-gray-500 text-sm mt-1">{experience} years of experience</p>
+        
+        <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors text-center">
+          {name}
+        </h3>
+        <p className="text-blue-600 font-medium text-center mb-3">{designation}</p>
+        
+        <div className="text-center mb-4">
+          <p className="text-gray-600 text-sm mb-2">
+            <FaUserMd className="inline-block mr-2 text-blue-500" />
+            {department}
+          </p>
+          <p className="text-gray-500 text-sm">
+            <FaCalendarAlt className="inline-block mr-2 text-blue-400" />
+            {experience} Experience
+          </p>
         </div>
         
-        <div className="mt-auto">
-          <div className="flex justify-center space-x-4 mb-4">
-            {facebook && (
-              <motion.a 
-                href={facebook} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-600 transition-colors"
-                whileHover={{ y: -3 }}
-              >
-                <FaFacebook className="text-xl" />
-              </motion.a>
-            )}
-            {twitter && (
-              <motion.a 
-                href={twitter} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
-                whileHover={{ y: -3 }}
-              >
-                <FaTwitter className="text-xl" />
-              </motion.a>
-            )}
-            {linkedin && (
-              <motion.a 
-                href={linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-700 transition-colors"
-                whileHover={{ y: -3 }}
-              >
-                <FaLinkedin className="text-xl" />
-              </motion.a>
-            )}
-            {instagram && (
-              <motion.a 
-                href={instagram} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-pink-600 transition-colors"
-                whileHover={{ y: -3 }}
-              >
-                <FaInstagram className="text-xl" />
-              </motion.a>
-            )}
-          </div>
-          <motion.a 
-            href="#" 
-            className="mt-4 block w-full text-center py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center group-hover:shadow-lg"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Book Appointment
-            <FaArrowRight className="ml-2 opacity-0 group-hover:opacity-100 group-hover:ml-3 transition-all duration-300" />
-          </motion.a>
-        </div>
+        <a 
+          href={`/book-appointment?doctor=${encodeURIComponent(name)}`}
+          className="mt-2 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 group-hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors"
+        >
+          View Profile
+          <FaArrowRight className="ml-2 text-xs group-hover:translate-x-1 transition-transform" />
+        </a>
       </div>
+      <div className="absolute inset-0 -z-10 rounded-xl bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg"></div>
     </motion.div>
   );
 };
 
 export function Doctors() {
-  console.log('Doctors component rendering');
-  React.useEffect(() => {
-    console.log('Doctors component mounted');
-    return () => console.log('Doctors component unmounted');
-  }, []);
-  const doctors: DoctorCardProps[] = [
+  const doctors = [
     {
-      name: 'Dr.A Sharma',
-      specialization: 'Cardiologist',
-      experience: 12,
-      rating: 4.9,
+      id: 1,
+      name: 'Dr. A. Sharma',
+      designation: 'Senior Cardiologist',
+      department: 'Cardiology',
+      experience: '15 years',
       image: 'https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg',
-      social: {
-        twitter: '#',
-        linkedin: '#'
-      }
+      bio: 'Specializes in interventional cardiology and complex coronary interventions.',
+      qualifications: ['MD, DM (Cardiology)'],
+      languages: ['English', 'Hindi', 'Telugu']
     },
     {
-      name: 'Dr.Priya Reddy',
-      specialization: 'Neurologist',
-      experience: 15,
-      rating: 4.8,
+      id: 2,
+      name: 'Dr. Priya Reddy',
+      designation: 'Senior Neurologist',
+      department: 'Neurology',
+      experience: '12 years',
       image: 'https://karetrip-assets.s3.ap-south-1.amazonaws.com/doctors/dr-priya-roy.webp',
-      social: {
-        linkedin: '#'
-      }
+      bio: 'Specializes in treating neurological disorders including stroke and epilepsy.',
+      qualifications: ['DM (Neurology)'],
+      languages: ['English', 'Hindi', 'Telugu']
     },
     {
+      id: 3,
       name: 'Dr. Ananya Patel',
-      specialization: 'Pediatrician',
-      experience: 8,
-      rating: 4.7,
+      designation: 'Pediatrician',
+      department: 'Pediatrics',
+      experience: '8 years',
       image: 'https://img.freepik.com/free-photo/doctor-with-white-coat-stethoscope_144627-43879.jpg',
-      social: {
-        twitter: '#',
-        instagram: '#'
-      }
+      bio: 'Specializes in child healthcare and development.',
+      qualifications: ['MD (Pediatrics)'],
+      languages: ['English', 'Hindi', 'Gujarati']
     },
     {
+      id: 4,
       name: 'Dr. Rajesh Kumar',
-      specialization: 'Orthopedic Surgeon',
-      experience: 18,
-      rating: 4.9,
+      designation: 'Orthopedic Surgeon',
+      department: 'Orthopedics',
+      experience: '18 years',
       image: 'https://t4.ftcdn.net/jpg/07/07/89/33/360_F_707893394_5DEhlBjWOmse1nyu0rC9T7ZRvsAFDkYC.jpg',
-      social: {
-        facebook: '#',
-        linkedin: '#'
-      }
+      bio: 'Specializes in joint replacements and sports injuries.',
+      qualifications: ['MS (Ortho)'],
+      languages: ['English', 'Hindi', 'Tamil']
     }
   ];
 
   return (
-    <section id="doctors" className="pt-10 pb-20 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-5">
-        <div className="absolute top-1/4 -left-20 w-64 h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl"></div>
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="doctors" className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-3xl mx-auto"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={stagger}
         >
           <motion.div 
-            className="flex justify-center mb-2"
             variants={fadeInUp}
           >
-            <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-full">
+            <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider mb-3">
               Our Doctors
             </span>
           </motion.div>
           <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-2"
-            variants={fadeInUp}
+            className="text-4xl font-bold text-gray-900 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             Meet Our Expert Specialists
           </motion.h2>
-          <motion.p 
-            className="text-lg text-gray-600 max-w-2xl mx-auto"
-            variants={fadeInUp}
-          >
-            Our team of highly qualified doctors is dedicated to providing the best healthcare services with compassion and expertise.
-          </motion.p>
+          <p className="text-lg text-gray-600 mt-4">
+            Our team of highly qualified doctors is dedicated to providing exceptional healthcare services with compassion and expertise.
+          </p>
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={stagger}
-        >
-          {doctors.map((doctor, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-              custom={index * 0.1}
-            >
-              <DoctorCard
-                name={doctor.name}
-                specialization={doctor.specialization}
-                experience={doctor.experience}
-                rating={doctor.rating}
-                image={doctor.image}
-                social={doctor.social}
-              />
-            </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {doctors.map((doctor) => (
+            <DoctorCard
+              key={doctor.id}
+              id={doctor.id}
+              name={doctor.name}
+              designation={doctor.designation}
+              department={doctor.department}
+              experience={doctor.experience}
+              image={doctor.image}
+              bio={doctor.bio}
+              qualifications={doctor.qualifications}
+              languages={doctor.languages}
+            />
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
+        <div className="mt-12 text-center">
           <motion.a
             href="/doctors"
-            className="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center px-8 py-3 text-white font-medium rounded-lg transition-colors duration-300"
+            style={{ backgroundColor: 'rgb(37, 99, 235)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
             View All Doctors
-            <FaArrowRight className="ml-2" />
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </motion.a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

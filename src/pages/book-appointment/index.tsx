@@ -155,12 +155,22 @@ export default function BookAppointment() {
         ]}
       />
 
-      {/* Appointment Form */}
-      <div className="container mx-auto px-4 py-12 max-w-4xl" style={{ paddingTop: '35px' }}>
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Appointment Request Form</h2>
-            <p className="text-gray-600 mb-8">
+      {/* Appointment Section with Image and Form */}
+      <div className="w-full px-4 py-12" style={{ paddingTop: '35px' }}>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Medical Consultation Image - Left Side */}
+          <div className="w-full">
+            <img 
+              src="https://templates.hibootstrap.com/medizo/default/assets/img/consultancy/consultancy-img.png" 
+              alt="Medical Consultation" 
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+          
+          {/* Form - Right Side */}
+          <div className="w-full">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Appointment Request</h2>
+            <p className="text-gray-600 mb-6">
               Please fill out the form below to book your appointment. Our team will contact you shortly to confirm your booking.
             </p>
             

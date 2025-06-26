@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaAward, FaUserMd, FaProcedures, FaHospital } from 'react-icons/fa';
@@ -14,26 +15,36 @@ export const About = () => {
   ];
 
   return (
-    <section className="pt-10 bg-white" style={{ paddingBottom: '2px' }}>
+    <section className="pt-16 pb-24 bg-white">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-            <div className="relative">
-              <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg">
-                <img 
-                  src="https://img.freepik.com/free-photo/team-young-specialist-doctors-standing-corridor-hospital_1303-21199.jpg" 
-                  alt="Team of specialist doctors in hospital corridor" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-primary-600 text-white p-6 rounded-lg shadow-lg">
-                <span className="block text-2xl font-bold">25+</span>
-                <span className="text-sm">Years of Experience</span>
+        <div className="flex flex-col md:flex-row items-start gap-0">
+          <motion.div 
+            className="md:w-1/2 md:sticky top-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative w-full max-w-md">
+              <Image
+                src="https://templates.hibootstrap.com/medizo/default/assets/img/appointment/appointment-img.png"
+                alt="Team of specialist doctors in hospital corridor"
+                width={400}
+                height={400}
+                className="w-full h-auto object-contain"
+                priority
+              />
+              <div className="absolute -bottom-6 -right-6 bg-primary-600 text-white p-4 rounded-xl shadow-2xl z-10 overflow-hidden min-w-[120px]">
+                <div className="relative z-10">
+                  <span className="block text-xl font-bold">25+</span>
+                  <span className="text-xs">Years Experience</span>
+                </div>
+                <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-white/10 rounded-full"></div>
               </div>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="md:w-1/2">
+          <div className="md:w-1/2 pt-8">
             <motion.div
               initial="initial"
               whileInView="animate"
@@ -53,20 +64,16 @@ export const About = () => {
               </motion.div>
               <AnimatedHeading 
                 as="h2" 
-                className="text-4xl font-bold text-gray-900 mb-6"
+                className="text-4xl font-bold text-gray-900 mb-4"
                 delay={0.4}
               >
                 About LifeCare Hospital
               </AnimatedHeading>
 
             </motion.div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-8 ">
               Established in 2000, LifeCare Hospital has been a trusted name in healthcare in Hyderabad, providing comprehensive medical services with a patient-centered approach.
             </p>
-            <p className="text-gray-600 mb-8">
-              Our state-of-the-art facility is equipped with the latest medical technology, and our team of highly skilled professionals is dedicated to delivering exceptional care to every patient.
-            </p>
-            
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="flex items-start">
                 <div className="mr-4 text-primary-600">
@@ -114,29 +121,15 @@ export const About = () => {
               </div>
             </div>
             
-            <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
+            <button className="text-white px-8 py-3 rounded-lg font-semibold transition duration-300" style={{ backgroundColor: 'rgb(37, 99, 235)' }}>
               <Link href="/about">
-              Learn More About Us
+                Learn More About Us
               </Link>
             </button>
           </div>  
         </div>
       </div>
-      
-      {/* Stats Section */}
-      <div className="bg-primary-700 text-white py-12 mt-20">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index} className="p-4">
-                <div className="mb-2">{stat.icon}</div>
-                <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
-                <p className="text-primary-100">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
     </section>
   );
 };
