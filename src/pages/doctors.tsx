@@ -152,7 +152,7 @@ export default function DoctorsPage() {
         ]}
       />
 
-      {/* Intro Section */}
+      {/* Intro Section 
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -163,7 +163,7 @@ export default function DoctorsPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Doctors Grid */}
       <section className="py-12 bg-white">

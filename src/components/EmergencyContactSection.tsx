@@ -14,7 +14,7 @@ export const EmergencyContactSection: React.FC<EmergencyContactSectionProps> = (
   noBottomPadding = false
 }) => {
   return (
-    <div className={`w-full min-w-[320px] ${noBackground ? 'bg-transparent' : 'bg-white'} border-t border-gray-100 pt-8 md:pt-12 ${noBottomPadding ? 'pb-0' : 'pb-12 md:pb-16'}`}>
+    <div className={`w-full min-w-[320px] ${noBackground ? 'bg-transparent' : 'bg-white'} pt-8 md:pt-12 ${noBottomPadding ? 'pb-0' : 'pb-12 md:pb-16'}`}>
       <div className={container ? 'container mx-auto px-4' : 'w-full'}>
         <div className={`min-w-[300px] bg-white shadow-md overflow-hidden rounded-lg`}>
           <div className="md:flex">

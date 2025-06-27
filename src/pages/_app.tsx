@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import '../../styles/globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { FloatingAppointmentButton } from '@/components/FloatingAppointmentButton';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -104,6 +105,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </div>
       </main>
       <Footer />
+      <FloatingAppointmentButton />
     </div>
   );
 }
