@@ -144,12 +144,12 @@ export function Doctors() {
           <motion.div 
             variants={fadeInUp}
           >
-            <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider mb-3">
+           <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-wider bg-blue-100 px-4 py-2 rounded-full mb-4">
               Our Doctors
             </span>
           </motion.div>
           <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
+            className="text-4xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
