@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaSearch, FaUserMd, FaCalendarAlt, FaPhoneAlt, FaHospital, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { Banner } from '@/components/ui/Banner';
-import { ConsultationBanner } from '@/components/ConsultationBanner';
+import { EmergencyContactSection } from '@/components/EmergencyContactSection';
 
 interface Doctor {
   id: number;
@@ -180,12 +180,41 @@ export default function DoctorsPage() {
               {filteredDoctors.map((doctor: Doctor) => (
                 <motion.div 
                   key={doctor.id} 
-                  className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300"
+                  className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-blue-50 overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
+                  whileHover={{ 
+                    borderColor: '#dbeafe',
+                    scale: 1.02
+                  }}
                 >
+                  <div className="absolute inset-0 overflow-hidden rounded-xl">
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/70 rounded-xl transition-all duration-700 ease-in-out"
+                      style={{
+                        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+                        WebkitClipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-blue-500/70 rounded-xl animate-revolve-border opacity-0 group-hover:opacity-100" />
+                    </div>
+                  </div>
+                  <style jsx>{`
+                    @keyframes revolve-border {
+                      0% { clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); }
+                      25% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+                      50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+                      75% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+                      100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+                    }
+                    .animate-revolve-border {
+                      animation: revolve-border 2s ease-in-out forwards;
+                    }
+                    .group:hover .animate-revolve-border {
+                      animation: revolve-border 2s ease-in-out forwards;
+                    }
+                  `}</style>
                   <div className="relative w-full flex flex-col items-center">
                     <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 group-hover:ring-4 ring-blue-100 ring-offset-4 ring-offset-white transition-all duration-300">
                       <Image
@@ -238,12 +267,21 @@ export default function DoctorsPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-600">No doctors found matching your criteria.</p>
+              <h3 className="text-xl font-medium text-gray-600">No doctors found matching your criteria.</h3>
+              <button 
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedDept('All Specialities');
+                }}
+                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Clear Filters
+              </button>
             </div>
           )}
         </div>
       </section>
-
+    
       {/* Doctor Details Modal */}
       {/* Doctor Profile Modal */}
       {selectedDoctor && (
@@ -315,6 +353,11 @@ export default function DoctorsPage() {
           </div>
         </div>
       )}
+      
+      {/* Emergency Contact Section - Full Width */}
+      <div className="w-full">
+        <EmergencyContactSection noBackground={false} container={true} />
+      </div>
     </div>
   );
 }

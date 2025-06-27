@@ -28,13 +28,18 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
 }) => {
   return (
     <motion.div 
-      className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300"
+      className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300 border border-blue-30 hover:border-blue-50 overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3 }}
+      whileHover={{ 
+        borderColor: '#dbeafe',
+        scale: 1.02
+      }}
     >
-      <div className="relative w-full flex flex-col items-center">
+      <div className="absolute left-0 top-0 h-full w-1 bg-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="relative w-full flex flex-col items-center z-10">
         <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 group-hover:ring-4 ring-blue-100 ring-offset-4 ring-offset-white transition-all duration-300">
           <img
             src={image}

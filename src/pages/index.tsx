@@ -7,6 +7,7 @@ import { Contact } from '@/components/Contact';
 import { CTA } from '../components/CTA';
 import ComprehensiveHealthcare from '@/components/ComprehensiveHealthcare';
 import { WhatMakesUsSpecial } from '@/components/WhatMakesUsSpecial';
+import { EmergencyContactSection } from '@/components/EmergencyContactSection';
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <WhatMakesUsSpecial />
         <Doctors />
         <Testimonials />
+        <EmergencyContactSection noBackground={true} container={true} />
         <CTA />
       </main>
     </div>

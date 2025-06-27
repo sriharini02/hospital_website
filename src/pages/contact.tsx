@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope, FaClock, FaAmbulance, FaCalendarAlt, FaUser, FaComment, FaDirections } from 'react-icons/fa';
 import { Banner } from '@/components/ui/Banner';
+import { ConsultationBanner } from '@/components/ConsultationBanner';
 
 interface Branch {
   id: number;
@@ -531,7 +532,10 @@ export default function ContactPage() {
         </div>
       </section>
       
-      {/* Emergency Banner 
+      {/* Consultation Banner */}
+      <ConsultationBanner />
+      
+      {/* Emergency Banner - Commented out but keeping for reference
       <div className="bg-red-600 text-white py-4">
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col md:flex-row items-center justify-center">

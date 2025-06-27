@@ -81,26 +81,26 @@ export function Specialities() {
           {specialities.map((speciality, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-transparent hover:border-blue-400 hover:ring-2 hover:ring-blue-100"
             >
-              <div className="p-4">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-blue-50 rounded-md p-2">
-                    {React.cloneElement(speciality.icon, { className: 'h-8 w-8 text-blue-600' })}
+              <div className="p-6">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 bg-blue-50 rounded-lg p-3 group-hover:bg-blue-100 transition-colors duration-300 self-start">
+                    {React.cloneElement(speciality.icon, { className: 'h-8 w-8 text-blue-600 group-hover:scale-110 transition-transform duration-300' })}
                   </div>
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">
+                  <h3 className="ml-4 text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 self-center">
                     {speciality.name}
                   </h3>
                 </div>
-                <p className="mt-3 text-sm text-gray-600 line-clamp-3">
+                <p className="mt-4 text-gray-600 line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
                   {speciality.description}
                 </p>
-                <div className="mt-4">
+                <div className="mt-6">
                   <a
                     href="/contact"
-                    className="text-sm text-blue-600 font-medium hover:text-blue-500 inline-flex items-center"
+                    className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700 transition-colors duration-300 hover:underline"
                   >
-                    Learn more <span className="ml-1">→</span>
+                    Learn more <span className="ml-1 group-hover:translate-x-1 transition-transform duration-300">→</span>
                   </a>
                 </div>
               </div>

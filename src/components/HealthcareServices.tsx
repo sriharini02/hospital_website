@@ -32,7 +32,7 @@ const services = [
 
 const HealthcareServices = () => {
   return (
-    <section className="bg-[#E0F2FE] text-[#1E3A8A] py-16">
+    <section className="bg-[#E0F2FE] text-[#1E3A8A] py-12">
       <div className="container mx-auto px-4 text-center">
         <motion.div 
           initial="initial"
@@ -47,26 +47,26 @@ const HealthcareServices = () => {
             Easy Solutions
           </motion.p>
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-bold mb-4"
             variants={fadeInUp}
           >
             4 Easy Steps to Get the World's Best Treatment
           </motion.h2>
           <motion.div 
-            className="w-20 h-1 bg-[#1E3A8A] mx-auto mb-8"
+            className="w-16 h-1 bg-[#1E3A8A] mx-auto mb-4"
             variants={fadeInUp}
           />
           
           {/* 4 Steps Section */}
           <motion.div 
-            className="mb-12"
+            className="mb-8"
             variants={fadeInUp}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((service) => (
                 <div 
                   key={service.id}
-                  className="group bg-white rounded-lg p-6 text-center shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg select-none cursor-default"
+                  className="group bg-white rounded-lg p-4 text-center shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg select-none cursor-default"
                 >
                   <div className="w-16 h-16 bg-[#1E3A8A] rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-opacity-90">
                     <div className="text-white text-2xl transition-transform duration-300 group-hover:scale-110">

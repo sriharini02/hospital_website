@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Banner } from '@/components/ui/Banner';
 import { FaHospital, FaUserMd, FaAward, FaHeartbeat, FaUsers, FaCalendarAlt, FaCheckCircle } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
+import { EmergencyContactSection } from '@/components/EmergencyContactSection';
 
 // Import types from framer-motion
 import { Variants, Transition } from 'framer-motion';
@@ -454,13 +455,18 @@ export default function AboutUs() {
                 {leadership.map((leader, index) => (
                   <motion.div 
                     key={index}
-                    className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300"
+                    className="group relative flex flex-col items-center px-4 pt-4 pb-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300 border border-blue-30 hover:border-blue-50 overflow-hidden"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3 }}
+                    whileHover={{ 
+                      borderColor: '#dbeafe',
+                      scale: 1.02
+                    }}
                   >
-                    <div className="relative w-full flex flex-col items-center">
+                    <div className="absolute left-0 top-0 h-full w-1 bg-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative w-full flex flex-col items-center z-10">
                       <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 group-hover:ring-4 ring-blue-100 ring-offset-4 ring-offset-white transition-all duration-300">
                         <Image
                           src={leader.image}
@@ -516,23 +522,8 @@ export default function AboutUs() {
             </div>
           </section>
 
-          {/* CTA Section */}
-          <section className="py-16 bg-[#E0F2FE] text-[#1E3A8A]">
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-3xl font-bold mb-6">Experience Exceptional Healthcare</h2>
-              <p className="text-xl mb-8 max-w-3xl mx-auto">
-                Our team is dedicated to providing you with the highest quality care in a compassionate and supportive environment.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/book-appointment" className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-8 py-3 rounded-full font-medium transition-colors duration-200">
-                  Book an Appointment
-                </Link>
-                <Link href="/contact" className="border-2 border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A] hover:bg-opacity-10 px-8 py-3 rounded-full font-medium transition-colors duration-200">
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          </section>
+          {/* Emergency Contact Section */}
+          <EmergencyContactSection noBackground={false} container={true} />
         </div>
       );
     }
