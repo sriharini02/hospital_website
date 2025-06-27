@@ -5,7 +5,7 @@ export function ConsultationBanner() {
   return (
     <section className="w-full bg-white text-[#1E3A8A] -mt-px" style={{ paddingBottom: '0' }}>
       <div className="w-full">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full bg-[rgb(59,130,246,0.3)] p-6 md:p-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full bg-[rgb(59,130,246,0.3)] p-6 md:py-12 px-8 md:px-24 lg:px-32">
           {/* Left: Phone and Heading */}
           <div className="flex items-center gap-6">
             <div className="bg-white/20 p-2 rounded-full flex-shrink-0 flex items-center justify-center">

@@ -81,7 +81,7 @@ export function Specialities() {
           {specialities.map((speciality, index) => (
             <div
               key={index}
-              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-transparent hover:border-blue-400 hover:ring-2 hover:ring-blue-100"
+              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-transparent hover:border-blue-400 hover:ring-2 hover:ring-blue-100 select-none cursor-default"
             >
               <div className="p-6">
                 <div className="flex items-center">
